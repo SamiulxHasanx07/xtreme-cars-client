@@ -33,12 +33,12 @@ const ResetPassword = () => {
         if (formEmail.length > 1) {
             sendPasswordResetEmail(formEmail)
 
-            toast.success('Password Reset Code Sended');
+            if (error) {
+                toast.error(error.code);
+            } else {
+                toast.success('Password Reset Code Sended');
+            }
         }
-    }
-    if (error) {
-        console.log(error);
-
     }
     return (
         <div className=''>
@@ -48,7 +48,7 @@ const ResetPassword = () => {
                     <Form onSubmit={handleResetForm}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control onChange={handleEmail} name='email' type="email" placeholder="Enter email" />
+                            <Form.Control required onChange={handleEmail} name='email' type="email" placeholder="Enter email" />
                             <FormText>
                                 {
                                     formError ? (<span className='text-danger mt-2'><FontAwesomeIcon icon={faCircleExclamation} /> Invalid Email</span>) : ''

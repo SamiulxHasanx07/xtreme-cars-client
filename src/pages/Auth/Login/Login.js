@@ -3,7 +3,7 @@ import { Container, Form, FormText } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -72,20 +72,25 @@ const Login = () => {
         const { email, password } = formInfo;
         if (email.length > 1 && password.length > 1) {
             signInWithEmailAndPassword(email, password)
+            console.log(user);
+            
         }
     }
 
 
+    const [showPass, setShowPass] = useState(false);
+    const handleShow = () => {
+        setShowPass(!showPass)
+    }
     return (
         <div className=''>
             <Container>
                 <div className='form-container mt-5 w-50 mx-auto px-4 py-5'>
                     <h2 className='text-center'>Please Login</h2>
-                    <h2>username: {user?.user.email}</h2>
                     <Form onSubmit={handleLoginForm}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control onChange={handleEmail} name='email' type="email" placeholder="Enter email" />
+                            <Form.Control required onChange={handleEmail} name='email' type="email" placeholder="Enter email" />
                             <FormText className={formError?.email == '' ? 'd-none' : 'd-block'}>
                                 {
                                     formError.email ? (<span className='text-danger mt-2'><FontAwesomeIcon icon={faCircleExclamation} /> Invalid Email</span>) : ''
@@ -95,7 +100,11 @@ const Login = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control onChange={handlePassword} name='password' type="password" placeholder="Password" />
+
+                            <div style={{ position: 'relative' }}>
+                                <Form.Control onChange={handlePassword} name='password' type={showPass ? 'text' : 'password'} placeholder="Password" />
+                                <span onClick={handleShow} className='btn' style={{ position: 'absolute', top: '0', right: '0' }}><FontAwesomeIcon icon={faEyeSlash} /></span>
+                            </div>
                             <FormText className={formError?.password == '' ? 'd-none' : 'd-block'}>
                                 {
                                     formError.password ? (<span className='text-danger mt-2'><FontAwesomeIcon icon={faCircleExclamation} /> Hints: Minimum six characters, one uppercase letter, one lowercase letter, one number and special character</span>) : ''
