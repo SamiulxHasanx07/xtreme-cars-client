@@ -6,6 +6,7 @@ import Blogs from './pages/Blogs/Blogs';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './pages/Shared/Header/Header';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
