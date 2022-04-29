@@ -1,15 +1,46 @@
 /* Google Fonts */
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700;900&display=swap');
+/* font-family: 'Bebas Neue', cursive;
+font-family: 'Roboto', sans-serif; */
 /* Global Reset */
-*{
-  margin:0;
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 
+/* global variables */
+:root {
+  --primary-color: #b91e1f;
+  --black-color: #050b20;
+  --white-color: #ffff;
+}
 
+/* navbar */
+.navbar-nav a {
+  text-decoration: none;
+  padding: 0 12px;
+}
 
-.App {
-  
+.navbar-nav a:last-child {
+  padding-right: 0;
+}
+
+.navbar-nav a.menu-link {
+  color: var(--white-color);
+}
+
+.navbar-nav a:hover {
+  color: var(--primary-color);
+  transition: .3s all ease;
+}
+
+.active {
+  color: var(--primary-color);
+}
+.header-logo a{
+  color: var(--white-color);
+  text-decoration: none;
 }
