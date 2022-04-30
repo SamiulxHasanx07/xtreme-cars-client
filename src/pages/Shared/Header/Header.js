@@ -26,7 +26,7 @@ const Header = () => {
                             user ? '' : <CustomLink to='/register'>Register</CustomLink>
                         }
                         
-                        <p className='text-white m-0'>{user ? user.email : ''}</p>
+                        <p className='text-white m-0'>{user ? user.displayName : ''}</p>
                         {
                             user ? <button onClick={() => signOut(auth)} className='btn btn-link text-white text-decoration-none'>Logout <FontAwesomeIcon icon={faRightToBracket} /></button> : ''
                         }

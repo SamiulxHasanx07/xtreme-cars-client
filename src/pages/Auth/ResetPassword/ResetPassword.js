@@ -35,7 +35,7 @@ const ResetPassword = () => {
 
             if (error) {
                 toast.error(error.code);
-            } else {
+            } else{
                 toast.success('Password Reset Code Sended');
             }
         }

@@ -6,6 +6,7 @@ import auth from '../../../firebase.init';
 import { faCircleExclamation, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const [
@@ -115,6 +116,7 @@ const Login = () => {
                         <p>Forgot Password? <Link to='/resetpass'>Reset</Link></p>
                         <input type="submit" value="Login" className='btn btn-primary w-100 py-2' />
                     </Form>
+                    <SocialLogin></SocialLogin>
                 </div>
             </Container>
             <ToastContainer

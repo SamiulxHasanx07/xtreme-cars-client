@@ -101,7 +101,7 @@ const Register = () => {
             setFormError({ ...formError, confirmPass: false })
             setRegisterUser({ ...registerUser, confirmPass: '' })
         }
-        if (e.target.value === '') {
+        if (e.target.value == '') {
             setFormError({ ...formError, confirmPass: '' })
             setRegisterUser({ ...registerUser, confirmPass: '' })
         }
