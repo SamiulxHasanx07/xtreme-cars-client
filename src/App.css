@@ -19,6 +19,14 @@ font-family: 'Roboto', sans-serif; */
   --white-color: #ffff;
 }
 
+.black-bg {
+  background-color: var(--black-color);
+}
+
+.main-color {
+  color: var(--primary-color);
+}
+
 /* navbar */
 .navbar-nav a {
   text-decoration: none;
@@ -58,4 +66,39 @@ font-family: 'Roboto', sans-serif; */
 /* cars section */
 .car-card {
   box-shadow: rgba(160, 160, 178, 0.2) 0px 7px 29px 0px;
+}
+
+
+
+/* Footer */
+.footer-suppliers a {
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.footer-suppliers a:hover {
+  color: var(--primary-color);
+}
+
+
+.footer-social div {
+  height: 35px;
+  width: 35px;
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  line-height: 35px;
+  text-align: center;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.footer-social div:hover {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 576px) {
+  footer .row .col-12 h3 {
+    margin-top: 40px;
+  }
 }

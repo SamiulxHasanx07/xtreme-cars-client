@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import {Container, Row } from 'react-bootstrap';
 import Car from './Car/Car';
 
 const Cars = () => {
@@ -14,7 +14,6 @@ const Cars = () => {
     return (
         <div className='cars-section py-5 bg-light'>
             <Container>
-
                 <h2 className='pb-4'>All Cars</h2>
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {

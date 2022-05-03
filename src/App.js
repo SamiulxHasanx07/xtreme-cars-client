@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Header from './pages/Shared/Header/Header';
 import 'react-toastify/dist/ReactToastify.css';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
+import Footer from './pages/Shared/Footer/Footer';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path='/resetpass' element={<ResetPassword/>}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
-      
+      <Footer></Footer>
     </div>
   );
 }
