@@ -1,5 +1,6 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700;900&display=swap');
+
 /* font-family: 'Bebas Neue', cursive;
 font-family: 'Roboto', sans-serif; */
 /* Global Reset */
@@ -40,14 +41,21 @@ font-family: 'Roboto', sans-serif; */
 .active {
   color: var(--primary-color);
 }
-.header-logo a{
+
+.header-logo a {
   color: var(--white-color);
   text-decoration: none;
 }
-.header-logo a:hover{
+
+.header-logo a:hover {
   color: var(--white-color);
 }
 
-.form-container{
+.form-container {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/* cars section */
+.car-card {
+  box-shadow: rgba(160, 160, 178, 0.2) 0px 7px 29px 0px;
 }

@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark" className='py-3'>
+            <Navbar bg="dark" variant="dark" className='py-3' sticky="top">
                 <Container>
                     <h3 className='header-logo'><Link to='/'>Xtreme Cars</Link></h3>
                     <Nav className="ms-auto d-flex align-items-center">
