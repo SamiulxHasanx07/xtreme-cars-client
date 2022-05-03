@@ -1,14 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { faGoogle, faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
 const SocialLogin = () => {
+    const [user, loading] = useAuthState(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     const [signInWithgithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
-    
+
     if (githubError) {
         toast.error(githubError.code)
     }
@@ -17,6 +19,13 @@ const SocialLogin = () => {
     }
     if (googleError) {
         toast.error(githubError.code)
+    }
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/home";
+    if (user) {
+        navigate(from, { replace: true });
     }
     return (
         <div>

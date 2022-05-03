@@ -1,15 +1,16 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Car = ({ singleCar }) => {
     console.log(singleCar);
-    const { name, images, price, qty, supplier, des } = singleCar;
+    const { _id, name, img, price, qty, supplier, brand, des } = singleCar;
 
     return (
         <div>
             <Col>
                 <Card className='car-card border-0'>
-                    <Card.Img variant="top" src={images} />
+                    <Card.Img variant="top" src={img} />
                     <Card.Body>
                         <h3>{name}</h3>
                         <div className='d-flex justify-content-between align-items-center'>
@@ -17,12 +18,12 @@ const Car = ({ singleCar }) => {
                             <h6 className='text-danger'>In Stock: {qty}</h6>
                         </div>
                         <h6>Supplier: {supplier}</h6>
-                        <h6>Brand: {supplier}</h6>
+                        <h6>Brand: {brand}</h6>
                         <Card.Text>
                             {des}
                         </Card.Text>
                         <div className='text-center my-4'>
-                            <button className='btn btn-danger'>Update Details</button>
+                            <Link to={`/inventory/${_id}`} className='btn btn-danger'>Update Details</Link>
                         </div>
                     </Card.Body>
                 </Card>

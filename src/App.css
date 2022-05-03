@@ -27,6 +27,37 @@ font-family: 'Roboto', sans-serif; */
   color: var(--primary-color);
 }
 
+.custom-btn:hover {
+  background-color: #050b20 !important;
+}
+
+.custom-btn {
+  color: var(--white-color) !important;
+  background-color: var(--primary-color) !important;
+}
+
+.title:hover .custom-title::before {
+  width: 100%;
+  transition: .5s all ease;
+}
+
+.custom-title {
+  position: relative;
+}
+
+.custom-title::before {
+  content: '';
+  border-bottom: 3px solid #b91e1f;
+  width: 50%;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.custom-title {
+  color: var(--primary-color);
+}
+
 /* navbar */
 .navbar-nav a {
   text-decoration: none;
@@ -95,6 +126,14 @@ font-family: 'Roboto', sans-serif; */
 .footer-social div:hover {
   color: var(--white-color);
   background-color: var(--primary-color);
+}
+
+.car-container{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.04);
 }
 
 @media (max-width: 576px) {

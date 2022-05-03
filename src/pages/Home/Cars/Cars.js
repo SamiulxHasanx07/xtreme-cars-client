@@ -14,7 +14,7 @@ const Cars = () => {
     return (
         <div className='cars-section py-5 bg-light'>
             <Container>
-                <h2 className='pb-4'>All Cars</h2>
+                <h2 className='pb-4 title'>All <span className='custom-title'>Cars</span></h2>
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {
                         cars.map(car => <Car key={car._id} singleCar={car}></Car>)
