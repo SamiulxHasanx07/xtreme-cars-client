@@ -3,7 +3,6 @@ import { Card, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Car = ({ singleCar }) => {
-    console.log(singleCar);
     const { _id, name, img, price, qty, supplier, brand, des } = singleCar;
 
     return (

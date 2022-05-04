@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
 import ManageInventoriesData from './ManageInventoriesData/ManageInventoriesData';
 
 const ManageInventories = () => {
@@ -10,7 +11,7 @@ const ManageInventories = () => {
             .then(data => {
                 setCars(data)
             })
-    }, [])
+    }, [cars])
     return (
         <div className='py-5'>
             <Container>
@@ -35,6 +36,11 @@ const ManageInventories = () => {
                         }
                     </tbody>
                 </Table>
+
+                <div className='text-center py-5'>
+                    <button className='btn btn-success'>Add New Item</button>
+                </div>
+                <ToastContainer></ToastContainer>
             </Container>
         </div>
     );

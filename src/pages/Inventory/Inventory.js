@@ -5,10 +5,8 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const Inventory = () => {
     const { carId } = useParams();
-    console.log(carId);
     const [car, setCar] = useState([]);
     const [stockQty, setStockQty] = useState(false)
-    console.log(car);
     const { name, img, _id, price, qty, des, supplier, brand } = car;
 
     useEffect(() => {
@@ -96,9 +94,9 @@ const Inventory = () => {
                             <div className='mb-3'>
                                 <h5>Update Stock Quantity:</h5>
                                 <Form onSubmit={updateQty} className='d-flex align-items-center'>
-                                    <input name='qty' type="number" placeholder='Update Quantity' className='d-block me-2 form-control w-25' />
+                                    <input name='qty' type="number" placeholder='Update Stock' className='d-block me-2 form-control w-25' />
                                     <div>
-                                        <button className='btn custom-btn py-2 px-4'>Update Stock</button>
+                                        <button className='btn custom-btn py-2 px-4'>Update</button>
                                     </div>
                                 </Form>
                             </div>
