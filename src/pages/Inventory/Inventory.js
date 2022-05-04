@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Inventory = () => {
     const { carId } = useParams();
     console.log(carId);
     const [car, setCar] = useState([]);
+    const [stockQty, setStockQty] = useState(false)
     console.log(car);
     const { name, img, _id, price, qty, des, supplier, brand } = car;
 
@@ -16,7 +18,62 @@ const Inventory = () => {
             .then(data => {
                 setCar(data)
             })
-    }, [])
+    }, [stockQty])
+
+    const updateQty = (e) => {
+        e.preventDefault();
+        const inputQty = e.target.qty.value;
+        const oldQty = parseInt(qty)
+        const updateQty = parseInt(inputQty)
+        const data = {
+            newQty: oldQty + updateQty
+        }
+
+        if (inputQty > 0) {
+            console.log(typeof inputQty);
+
+            console.log(data.newQty);
+            const url = `http://localhost:5000/carqty/${_id}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setStockQty(!stockQty)
+                    toast.success('Quantity Updated')
+                })
+        } else {
+            toast.warning('Enter Valid Number')
+        }
+    }
+
+    const delivery = () => {
+        const oldQty = parseInt(qty)
+        const data = {
+            newQty: oldQty - 1
+        }
+        if (qty > 0) {
+            const url = `http://localhost:5000/carqty/${_id}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setStockQty(!stockQty)
+                    toast.success('One Car Deliverd')
+                })
+        } else {
+            toast.error('Please Update Stock')
+        }
+    }
     return (
         <div className='py-5'>
             <Container>
@@ -34,15 +91,25 @@ const Inventory = () => {
                             <h3>Price: <span className='main-color'>${price}</span></h3>
                             <hr />
                             <h4>In Stock: {qty}</h4>
-                            <h5>Brand: {brand?brand:'Data not exists'}</h5>
+                            <h5>Brand: {brand ? brand : 'Data not exists'}</h5>
                             <h5>Supplier: {supplier}</h5>
                             <p>{des}</p>
-                            <button className='btn custom-btn py-2 px-5'>Delivered</button>
+                            {/* update stock */}
+                            <div className='mb-3'>
+                                <h5>Update Stock Quantity:</h5>
+                                <Form onSubmit={updateQty} className='d-flex align-items-center'>
+                                    <input name='qty' type="number" placeholder='Update Quantity' className='d-block me-2 form-control w-25' />
+                                    <div>
+                                        <button className='btn custom-btn py-2 px-4'>Update Stock</button>
+                                    </div>
+                                </Form>
+                            </div>
+                            <button onClick={delivery} className='btn custom-btn py-2 px-5'>Delivered</button>
                         </Col>
                     </Row>
                 </div>
             </Container>
-
+            <ToastContainer />
         </div>
     );
 };
