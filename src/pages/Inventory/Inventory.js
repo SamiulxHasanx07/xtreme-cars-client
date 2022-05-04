@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
 const Inventory = () => {
@@ -30,9 +30,6 @@ const Inventory = () => {
         }
 
         if (inputQty > 0) {
-            console.log(typeof inputQty);
-
-            console.log(data.newQty);
             const url = `http://localhost:5000/carqty/${_id}`;
             fetch(url, {
                 method: 'PUT',
@@ -44,7 +41,8 @@ const Inventory = () => {
                 .then(res => res.json())
                 .then(data => {
                     setStockQty(!stockQty)
-                    toast.success('Quantity Updated')
+                    toast.success(`${updateQty} ${name} Added`)
+                    e.target.reset()
                 })
         } else {
             toast.warning('Enter Valid Number')
@@ -68,10 +66,10 @@ const Inventory = () => {
                 .then(res => res.json())
                 .then(data => {
                     setStockQty(!stockQty)
-                    toast.success('One Car Deliverd')
+                    toast.success(`${name} Deliverd`)
                 })
         } else {
-            toast.error('Please Update Stock')
+            toast.error('Stock Out!! Please Update Stock')
         }
     }
     return (
@@ -107,6 +105,11 @@ const Inventory = () => {
                             <button onClick={delivery} className='btn custom-btn py-2 px-5'>Delivered</button>
                         </Col>
                     </Row>
+                </div>
+
+                <div className='py-5 text-center'>
+                    <h2 className='title'>Manage <span className='custom-title'>All Inventories</span></h2>
+                    <Link to='/manageinventories' className='custom-btn btn mt-3'>Manage Inventories</Link>
                 </div>
             </Container>
             <ToastContainer />

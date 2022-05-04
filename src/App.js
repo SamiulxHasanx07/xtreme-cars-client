@@ -11,6 +11,7 @@ import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 import Footer from './pages/Shared/Footer/Footer';
 import Inventory from './pages/Inventory/Inventory';
 import RequireAuth from './pages/Auth/RequireAuth/RequireAuth';
+import ManageInventories from './pages/ManageInventories/ManageInventories';
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
             <Inventory></Inventory>
           </RequireAuth>
         }></Route>
+        <Route path='/manageinventories' element={
+          <RequireAuth>
+            <ManageInventories></ManageInventories>
+          </RequireAuth>
+        } />
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
