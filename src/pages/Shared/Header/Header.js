@@ -19,16 +19,21 @@ const Header = () => {
                     <h3 className='header-logo'><Link to='/'>Xtreme Cars</Link></h3>
                     <Nav className="ms-auto d-flex align-items-center">
                         <CustomLink to='/home'>Home</CustomLink>
-                        <CustomLink to='/blogs'>Blogs</CustomLink>
                         {
                             user ? '' : <CustomLink to='/login'>Login</CustomLink>
                         }
                         {
                             user ? '' : <CustomLink to='/register'>Register</CustomLink>
                         }
+
+                        {
+                            user ? <CustomLink to='/additem'>Add Item</CustomLink> :'' 
+                        }
+
                         {
                             user ? <CustomLink to='/manageinventories'>Manage Inventories</CustomLink> :'' 
                         }
+                        <CustomLink to='/blogs'>Blogs</CustomLink>
                         
                         <p className='text-white m-0' title={user?user.displayName:''}>{user ? 'Hi, '+user.displayName.slice(0,3) : ''}..</p>
                         {

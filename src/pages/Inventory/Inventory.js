@@ -78,7 +78,7 @@ const Inventory = () => {
                     <Row>
                         <Col xs={12} md={6} lg={6}>
                             <div className="car-container">
-                                <img className='border border-1 p-1' src={img} alt="" />
+                                <img className='border border-1 p-1 w-100' src={img} alt="" />
                             </div>
                         </Col>
                         <Col xs={12} md={6} lg={6}>
