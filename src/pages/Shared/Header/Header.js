@@ -10,6 +10,7 @@ import { signOut } from 'firebase/auth';
 
 const Header = () => {
     const [user] = useAuthState(auth);
+    
 
     return (
         <>
@@ -25,8 +26,11 @@ const Header = () => {
                         {
                             user ? '' : <CustomLink to='/register'>Register</CustomLink>
                         }
+                        {
+                            user ? <CustomLink to='/manageinventories'>Manage Inventories</CustomLink> :'' 
+                        }
                         
-                        <p className='text-white m-0' title={user?user.displayName:''}>Hi, {user ? user.displayName.slice(0,3) : ''}</p>
+                        <p className='text-white m-0' title={user?user.displayName:''}>{user ? 'Hi, '+user.displayName.slice(0,3) : ''}..</p>
                         {
                             user ? <button onClick={() => signOut(auth)} className='btn btn-link text-white text-decoration-none'>Logout <FontAwesomeIcon icon={faRightToBracket} /></button> : ''
                         }

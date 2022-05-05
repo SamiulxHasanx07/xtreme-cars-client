@@ -2,6 +2,7 @@ import React from 'react';
 import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
+import { Link } from 'react-router-dom';
 const ManageInventoriesData = ({ car }) => {
     const { name, img, _id, price, qty, des, supplier, brand } = car;
 
@@ -29,7 +30,7 @@ const ManageInventoriesData = ({ car }) => {
             <td>{supplier}</td>
             <td title={des}>{des.slice(0, 15)}...</td>
             <td>
-                <button className='me-2 btn btn-success'>Edit <FontAwesomeIcon icon={faPen} /></button>
+                <Link to={`/editcarinfo/${_id}`} className='me-2 btn btn-success'>Edit <FontAwesomeIcon icon={faPen} /></Link>
                 <button onClick={deleteCar} className='btn custom-btn'>Delete <FontAwesomeIcon icon={faTrashCan} /></button>
             </td>
         </tr>

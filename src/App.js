@@ -12,6 +12,7 @@ import Footer from './pages/Shared/Footer/Footer';
 import Inventory from './pages/Inventory/Inventory';
 import RequireAuth from './pages/Auth/RequireAuth/RequireAuth';
 import ManageInventories from './pages/ManageInventories/ManageInventories';
+import EditCarInfo from './pages/Home/EditCarInfo/EditCarInfo';
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
             <ManageInventories></ManageInventories>
           </RequireAuth>
         } />
+        <Route path='/editcarinfo/:id' element={
+          <RequireAuth>
+            <EditCarInfo></EditCarInfo>
+          </RequireAuth>
+        }/>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>

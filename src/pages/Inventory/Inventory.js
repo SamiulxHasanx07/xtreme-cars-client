@@ -43,7 +43,7 @@ const Inventory = () => {
                     e.target.reset()
                 })
         } else {
-            toast.warning('Enter Valid Number')
+            toast.error('Enter Valid Number')
         }
     }
 
@@ -64,7 +64,7 @@ const Inventory = () => {
                 .then(res => res.json())
                 .then(data => {
                     setStockQty(!stockQty)
-                    toast.success(`${name} Deliverd`)
+                    toast.success(`1x ${name} Deliverd`)
                 })
         } else {
             toast.error('Stock Out!! Please Update Stock')

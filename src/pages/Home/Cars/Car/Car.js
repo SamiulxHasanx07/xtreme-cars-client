@@ -19,7 +19,7 @@ const Car = ({ singleCar }) => {
                         <h6>Supplier: {supplier}</h6>
                         <h6>Brand: {brand}</h6>
                         <Card.Text>
-                            {des}
+                            {des.slice(0,80)}...
                         </Card.Text>
                         <div className='text-center my-4'>
                             <Link to={`/inventory/${_id}`} className='btn btn-danger'>Update Details</Link>
