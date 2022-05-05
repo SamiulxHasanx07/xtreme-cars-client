@@ -2,7 +2,11 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
+import { useAuthState} from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 const AddItem = () => {
+    const [user] = useAuthState(auth);
+    
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         fetch('http://localhost:5000/car',{
@@ -10,7 +14,7 @@ const AddItem = () => {
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify(data)
+            body:JSON.stringify({...data, email:user?.email})
         })
         .then(res=>res.json())
         .then(data=>{

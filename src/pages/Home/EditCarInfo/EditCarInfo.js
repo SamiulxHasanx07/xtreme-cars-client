@@ -5,8 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const EditCarInfo = () => {
     const { id } = useParams();
-
-    const [carInfo, setCarInfo] = useState([])
+    const [carInfo, setCarInfo] = useState([]);
     const { _id, name, img, price, qty, supplier, brand, des } = carInfo;
 
     useEffect(() => {
@@ -97,25 +96,8 @@ const EditCarInfo = () => {
                         </Form.Group>
 
                         <ToastContainer></ToastContainer>
-                        {/* btn */}
                         <input className='btn custom-btn w-100 mb-2' type="submit" value="Update" />
                     </Form>
-                    {/* <form onSubmit={handleSubmit()}> */}
-                    {/* <input className='form-control mb-2' onChange={handleName} value={carData?.name} {...register("name")} /> */}
-                    {/* <label className='text-muted'>Photo Link</label>
-                        <input className='form-control mb-2' defaultValue={img} {...register("img")} />
-                        <label className='text-muted'>Price</label>
-                        <input className='form-control mb-2' defaultValue={price} {...register("price")} />
-                        <label className='text-muted'>Stock Quantity</label>
-                        <input className='form-control mb-2' defaultValue={qty} {...register("qty")} />
-                        <label className='text-muted'>Car Supplier</label>
-                        <input className='form-control mb-2' defaultValue={supplier} {...register("supplier")} />
-                        <label className='text-muted'>Car Brand</label>
-                        <input className='form-control mb-2' defaultValue={brand} {...register("brand")} />
-                        <label className='text-muted'>Description</label>
-                        <textarea className='form-control mb-2' defaultValue={des} {...register("des")} />
-                        <input className='btn custom-btn w-100 mb-2' type="submit" value='Update' /> */}
-                    {/* </form> */}
                 </div>
             </Container>
         </div>
