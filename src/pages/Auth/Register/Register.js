@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, FormText } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 import { faCircleExclamation, faCircleCheck, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 // redirect left
 
@@ -22,7 +23,7 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    if(error){
+    if (error) {
         setOutterError(error.code)
     }
 
@@ -36,27 +37,14 @@ const Register = () => {
         }
     }, [error])
 
-    const handleForm = (e) => {
-        console.log(registerUser);
-        e.preventDefault();
-        const { name, email, password, confirmPass } = registerUser;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (name.length >= 3 && emailRegex.test(email) && password === confirmPass && !error) {
-            createUserWithEmailAndPassword(email, password)
-            toast.success('Thanks for register, Verification code sended');
-        } else {
-            outterError?toast.error(outterError):toast.error('Something Wrong Try Again')
-
-        }
-    }
     const handleName = e => {
         setRegisterUser({ ...registerUser, name: e.target.value })
     }
     const handleEmail = e => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const validate = regex.test(e.target.value)
-        console.log(validate);
+        // console.log(validate);
         if (!validate) {
             setFormError({ ...formError, email: true })
             setRegisterUser({ ...registerUser, email: '' })
@@ -70,10 +58,10 @@ const Register = () => {
         }
     }
     const handlePass = e => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
         const validate = passRegex.test(e.target.value)
-        console.log(validate);
+        // console.log(validate);
         if (!validate) {
             setFormError({ ...formError, password: true })
             setDisabled(false)
@@ -110,11 +98,29 @@ const Register = () => {
     const handleShow = () => {
         setShowPass(!showPass)
     }
+
+    const location =  useLocation();
+    const navigate = useNavigate();
+    const from = location?.state?.from?.pathname || '/home'
+    const handleForm = async(e) => {
+        // console.log(registerUser);
+        e.preventDefault();
+        const { name, email, password, confirmPass } = registerUser;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (name.length >= 3 && emailRegex.test(email) && password === confirmPass && !error) {
+            await createUserWithEmailAndPassword(email, password)
+            await toast.success('Thanks for register, Verification code sended');
+            await navigate(from, {replace:true});
+        } else {
+            outterError ? toast.error(outterError) : toast.error('Something Wrong Try Again')
+
+        }
+    }
     return (
         <div>
             <Container>
-                <div className='form-container mt-5 w-50 mx-auto px-4 py-5'>
-                    <h2 className='text-center'>Please Login</h2>
+                <div className='form-container my-5 w-50 mx-auto px-4 py-5'>
+                    <h2 className='text-center'>Create Account</h2>
                     <Form onSubmit={handleForm}>
                         <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label>Full Name</Form.Label>
@@ -151,7 +157,10 @@ const Register = () => {
                             </FormText>
                         </Form.Group>
                         <p>Already have an account? <Link to='/login'>Login</Link></p>
-                        <input type="submit" value="Register" className='btn btn-primary w-100 py-2' />
+                        <input type="submit" value="Create Account" className='btn btn-primary w-100 py-2' />
+                        <div className='mt-4'>
+                        <SocialLogin></SocialLogin>
+                        </div>
                     </Form>
                 </div>
             </Container>

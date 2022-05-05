@@ -14,6 +14,7 @@ import RequireAuth from './pages/Auth/RequireAuth/RequireAuth';
 import ManageInventories from './pages/ManageInventories/ManageInventories';
 import EditCarInfo from './pages/Home/EditCarInfo/EditCarInfo';
 import AddItem from './pages/AddItem/AddItem';
+import Loading from './pages/Shared/Loading/Loading';
 
 function App() {
   return (

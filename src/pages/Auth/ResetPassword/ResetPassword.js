@@ -43,7 +43,7 @@ const ResetPassword = () => {
     return (
         <div className=''>
             <Container>
-                <div className='form-container mt-5 w-50 mx-auto px-4 py-5'>
+                <div className='form-container my-5 w-50 mx-auto px-4 py-5'>
                     <h2 className='text-center'>Reset Password</h2>
                     <Form onSubmit={handleResetForm}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">

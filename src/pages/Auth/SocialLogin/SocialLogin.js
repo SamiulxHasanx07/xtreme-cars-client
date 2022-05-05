@@ -24,15 +24,17 @@ const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/home";
+    const path = location.pathname;
+    const pathValidation = path == '/login';
     if (user) {
         navigate(from, { replace: true });
     }
     return (
         <div>
             <div className='d-flex flex-column align-items-center justify-content-around py-4'>
-                <button onClick={() => signInWithGoogle()} className='w-50 my-2 btn btn-danger'><FontAwesomeIcon className='me-2' icon={faGoogle} /> Login With Google</button>
-                <button onClick={() => signInWithFacebook()} className='w-50 my-2 btn btn-primary'><FontAwesomeIcon className='me-2' icon={faFacebook} /> Login With Facebook</button>
-                <button onClick={() => signInWithgithub()} className='w-50 my-2 btn btn-success'><FontAwesomeIcon className='me-2' icon={faGithub} /> Login With Github</button>
+                <button onClick={() => signInWithGoogle()} className='w-50 my-2 btn btn-danger'><FontAwesomeIcon className='me-2' icon={faGoogle} /> {pathValidation?'Login':'Register'} With Google</button>
+                <button onClick={() => signInWithFacebook()} className='w-50 my-2 btn btn-primary'><FontAwesomeIcon className='me-2' icon={faFacebook} /> {pathValidation?'Login':'Register'} With Facebook</button>
+                <button onClick={() => signInWithgithub()} className='w-50 my-2 btn btn-success'><FontAwesomeIcon className='me-2' icon={faGithub} /> {pathValidation?'Login':'Register'} With Github</button>
             </div>
 
         </div>

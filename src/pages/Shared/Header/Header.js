@@ -35,7 +35,7 @@ const Header = () => {
                         }
                         <CustomLink to='/blogs'>Blogs</CustomLink>
                         
-                        <p className='text-white m-0' title={user?user.displayName:''}>{user ? 'Hi, '+user.displayName.slice(0,3) : ''}..</p>
+                        <p className='text-white m-0' title={user?user.displayName:''}>{user ? 'Hi, '+user?.displayName?.slice(0,3) : ''}..</p>
                         {
                             user ? <button onClick={() => signOut(auth)} className='btn btn-link text-white text-decoration-none'>Logout <FontAwesomeIcon icon={faRightToBracket} /></button> : ''
                         }
