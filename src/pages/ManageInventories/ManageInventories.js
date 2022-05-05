@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import ManageInventoriesData from './ManageInventoriesData/ManageInventoriesData';
 
@@ -38,7 +39,7 @@ const ManageInventories = () => {
                 </Table>
 
                 <div className='text-center py-5'>
-                    <button className='btn btn-success'>Add New Item</button>
+                    <Link to='/additem' className='btn btn-success'>Add New Item</Link>
                 </div>
                 <ToastContainer></ToastContainer>
             </Container>
