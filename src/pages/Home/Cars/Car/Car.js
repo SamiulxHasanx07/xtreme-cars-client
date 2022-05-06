@@ -22,7 +22,7 @@ const Car = ({ singleCar }) => {
                             {des.length>80?des.slice(0,80)+'...':des}
                         </Card.Text>
                         <div className='text-center my-4'>
-                            <Link to={`/inventory/${_id}`} className='btn btn-danger'>Update Details</Link>
+                            <Link to={`/inventory/${_id}`} className='btn custom-btn'>Update Details</Link>
                         </div>
                     </Card.Body>
                 </Card>
