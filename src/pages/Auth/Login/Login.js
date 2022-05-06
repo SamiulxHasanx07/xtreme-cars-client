@@ -68,13 +68,25 @@ const Login = () => {
         }
     }
 
-    const handleLoginForm = (e) => {
+    const handleLoginForm = async (e) => {
         e.preventDefault();
         const { email, password } = formInfo;
         if (email.length > 1 && password.length > 1) {
-            signInWithEmailAndPassword(email, password)
-            console.log(user);
-            
+            await signInWithEmailAndPassword(email, password)
+            await fetch('http://localhost:5000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email})
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data.accessToken)
+                    localStorage.setItem('accessToken', data.accessToken)
+                })
+            // console.log(user);
+
         }
     }
 
