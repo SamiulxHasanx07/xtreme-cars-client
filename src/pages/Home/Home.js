@@ -1,4 +1,5 @@
 import React from 'react';
+import GetInTouch from '../GetInTouch/GetInTouch';
 import Banner from './Banner/Banner';
 import Cars from './Cars/Cars';
 import InfoCount from './InfoCount/InfoCount';
@@ -11,6 +12,7 @@ const Home = () => {
             <WhyXtremeCarBest/>
             <Cars></Cars>
             <InfoCount></InfoCount>
+            <GetInTouch></GetInTouch>
         </div>
     );
 };
