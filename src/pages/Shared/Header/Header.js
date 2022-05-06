@@ -10,7 +10,7 @@ import { signOut } from 'firebase/auth';
 
 const Header = () => {
     const [user] = useAuthState(auth);
-
+    const userName = user?.displayName;
     return (
         <>
             <Navbar bg="" variant="dark" className='py-3 black-bg' expand="lg">
@@ -37,7 +37,7 @@ const Header = () => {
                             {
                                 user ? '' : <CustomLink to='/register'>Register</CustomLink>
                             }
-                            <p className='text-white m-0' title={user ? user.displayName : ''}>{user ? 'Hi, ' + user?.displayName : ''}</p>
+                            <p className='text-white m-0'>{userName ? 'Hi, ' + userName : ''}</p>
                             {
                                 user ? <button onClick={() => signOut(auth)} className='btn btn-link text-white text-decoration-none'>Logout <FontAwesomeIcon icon={faRightToBracket} /></button> : ''
                             }
