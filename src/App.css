@@ -180,7 +180,28 @@ font-family: 'Roboto', sans-serif; */
   justify-content: center;
 }
 
+/* Tablet or Medium Device Breakpoint */
+@media (max-width: 992px) {
 
+  /* Form Style */
+  .form-wrapper {
+    width: 90%;
+  }
+
+  .form-container {
+    width: 80%;
+  }
+
+
+  /* product table */
+  .product-table {
+    overflow-x: auto;
+  }
+}
+
+
+
+/* Mobile Device Breakpoint */
 @media (max-width: 576px) {
   footer .row .col-12 h3 {
     margin-top: 40px;
@@ -216,9 +237,5 @@ font-family: 'Roboto', sans-serif; */
 
   .form-container {
     width: 100%;
-  }
-  /* product table */
-  .product-table{
-    overflow-x: auto;
   }
 }
