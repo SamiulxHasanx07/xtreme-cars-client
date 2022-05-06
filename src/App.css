@@ -144,6 +144,27 @@ font-family: 'Roboto', sans-serif; */
 }
 
 
+/* why xtreme cars best */
+.why-best .card:hover{
+  background-color: #050b20;
+  color: #fff;
+
+}
+.reason-icon{
+  font-size: 40px;
+  color: #fff;
+}
+.why-best .card:hover .reason-icon div{
+  background-color: var(--primary-color);
+}
+.reason-icon div{
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  background-color: var(--black-color);
+  border-radius: 100px;
+}
+
 
 @media (max-width: 576px) {
   footer .row .col-12 h3 {
