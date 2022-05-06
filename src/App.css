@@ -99,6 +99,51 @@ font-family: 'Roboto', sans-serif; */
   box-shadow: rgba(160, 160, 178, 0.2) 0px 7px 29px 0px;
 }
 
+/* Form Custom Style */
+.form-wrapper {
+  width: 50%;
+}
+
+.form-container {
+  width: 50%;
+}
+
+/* info count  */
+.info-title {
+  font-size: 22px;
+}
+
+.info-num {
+  font-size: 45px;
+}
+
+
+/* why xtreme cars best */
+.why-best .all-cards {
+  padding: 0 40px;
+}
+
+.why-best .card:hover {
+  background-color: #050b20;
+  color: #fff;
+}
+
+.reason-icon {
+  font-size: 40px;
+  color: #fff;
+}
+
+.why-best .card:hover .reason-icon div {
+  background-color: var(--primary-color);
+}
+
+.reason-icon div {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  background-color: var(--black-color);
+  border-radius: 100px;
+}
 
 
 /* Footer */
@@ -128,41 +173,11 @@ font-family: 'Roboto', sans-serif; */
   background-color: var(--primary-color);
 }
 
-.car-container{
+.car-container {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* info count  */
-.info-title{
-  font-size: 22px;
-}
-.info-num{
-  font-size: 45px;
-}
-
-
-/* why xtreme cars best */
-.why-best .card:hover{
-  background-color: #050b20;
-  color: #fff;
-
-}
-.reason-icon{
-  font-size: 40px;
-  color: #fff;
-}
-.why-best .card:hover .reason-icon div{
-  background-color: var(--primary-color);
-}
-.reason-icon div{
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-  background-color: var(--black-color);
-  border-radius: 100px;
 }
 
 
@@ -170,6 +185,40 @@ font-family: 'Roboto', sans-serif; */
   footer .row .col-12 h3 {
     margin-top: 40px;
   }
+
+  .why-best .all-cards {
+    padding: 0 15px;
+  }
+
+  /* car card */
+  /* .car-card .card-img {
+    width: 60%;
+  } */
+
+  /* Company Info */
+  .info-num {
+    font-size: 25px;
+  }
+
+  .info-title {
+    font-size: 13px;
+  }
+
+  .company-info {
+    padding: 80px 0px;
+    background-size: cover;
+  }
+
+  /* Form Style */
+  .form-wrapper {
+    width: 90%;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+  /* product table */
+  .product-table{
+    overflow-x: auto;
+  }
 }
-
-

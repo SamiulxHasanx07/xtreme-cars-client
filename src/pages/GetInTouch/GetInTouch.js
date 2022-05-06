@@ -16,7 +16,7 @@ const GetInTouch = () => {
         <div className='py-5'>
             <Container>
                 <h1 className='title text-center mb-4'><span className='custom-title'>Contact</span> Us</h1>
-                <div className="form-wrapper w-50 mx-auto">
+                <div className="form-wrapper mx-auto">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input className='form-control mb-2' type="text" placeholder="Full Name" {...register("name", { required: "Please Enter Your Name", maxLength: 80 })} />
                         <ErrorMessage className='text-danger m-0 mb-3' errors={errors} name="name" as="p" />

@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap';
 import CountUp from 'react-countup';
 const InfoCount = () => {
     return (
-        <div style={{ backgroundImage: `url('https://raw.githubusercontent.com/SamiulxHasanx07/xtreme-cars-images/main/other/car-warehouse.jpg')`, padding: '150px 0' }}>
+        <div className='company-info' style={{ backgroundImage: `url('https://raw.githubusercontent.com/SamiulxHasanx07/xtreme-cars-images/main/other/car-warehouse.jpg')`, padding: '150px 0' }}>
             <Container>
                 <div className='infoNumber d-flex align-items-center justify-content-between text-white text-center'>
                     <div>

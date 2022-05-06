@@ -9,7 +9,7 @@ const Car = ({ singleCar }) => {
         <div>
             <Col>
                 <Card className='car-card border-0'>
-                    <Card.Img variant="top" src={img} />
+                    <Card.Img className='mx-auto' variant="top" src={img} />
                     <Card.Body>
                         <h3>{name}</h3>
                         <div className='d-flex justify-content-between align-items-center'>

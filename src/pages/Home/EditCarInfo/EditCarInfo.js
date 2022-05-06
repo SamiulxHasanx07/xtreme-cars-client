@@ -57,7 +57,7 @@ const EditCarInfo = () => {
     return (
         <div className='py-5'>
             <Container>
-                <div className="from-wrapper w-50 mx-auto">
+                <div className="from-wrapper mx-auto">
                     <h2 className='title'>Update <span className='custom-title'>{name} Info</span></h2>
                     <Form onSubmit={formSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicName">

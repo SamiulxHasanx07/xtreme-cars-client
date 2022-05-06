@@ -119,7 +119,7 @@ const Register = () => {
     return (
         <div>
             <Container>
-                <div className='form-container my-5 w-50 mx-auto px-4 py-5'>
+                <div className='form-container my-5 mx-auto px-4 py-5'>
                     <h2 className='text-center'>Create Account</h2>
                     <Form onSubmit={handleForm}>
                         <Form.Group className="mb-3" controlId="formBasicName">

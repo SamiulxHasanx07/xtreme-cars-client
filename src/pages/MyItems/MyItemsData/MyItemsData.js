@@ -63,8 +63,10 @@ const MyItemsData = ({ myData }) => {
             <td>{supplier}</td>
             <td title={des}>{des.slice(0, 15)}...</td>
             <td>
-                <Link to={`/editcarinfo/${_id}`} className='me-2 btn btn-success'>Edit <FontAwesomeIcon icon={faPen} /></Link>
-                <button onClick={deleteCar} className='btn custom-btn'>Delete <FontAwesomeIcon icon={faTrashCan} /></button>
+                <div className='d-flex'>
+                    <Link to={`/editcarinfo/${_id}`} className='me-2 btn btn-success'>Edit <FontAwesomeIcon icon={faPen} /></Link>
+                    <button onClick={deleteCar} className='btn custom-btn'>Delete <FontAwesomeIcon icon={faTrashCan} /></button>
+                </div>
             </td>
         </tr>
     );

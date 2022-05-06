@@ -8,7 +8,7 @@ const WhyXtremeCarBest = () => {
         <div className='py-5 why-best'>
             <Container>
                 <h2 className='title'>Why <span className='custom-title'>Xtreme Cars Best</span></h2>
-                <div className='px-5 py-5'>
+                <div className='all-cards py-5'>
                     <Row>
                         <Col sm={12} md={6} lg={4}>
                             <Card className='text-center py-4 border-0'>

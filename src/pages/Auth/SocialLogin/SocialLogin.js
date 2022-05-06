@@ -32,9 +32,9 @@ const SocialLogin = () => {
     return (
         <div>
             <div className='d-flex flex-column align-items-center justify-content-around py-4'>
-                <button onClick={() => signInWithGoogle()} className='w-50 my-2 btn btn-danger'><FontAwesomeIcon className='me-2' icon={faGoogle} /> {pathValidation?'Login':'Register'} With Google</button>
-                <button onClick={() => signInWithFacebook()} className='w-50 my-2 btn btn-primary'><FontAwesomeIcon className='me-2' icon={faFacebook} /> {pathValidation?'Login':'Register'} With Facebook</button>
-                <button onClick={() => signInWithgithub()} className='w-50 my-2 btn btn-success'><FontAwesomeIcon className='me-2' icon={faGithub} /> {pathValidation?'Login':'Register'} With Github</button>
+                <button onClick={() => signInWithGoogle()} className='w-100 my-2 btn btn-danger'><FontAwesomeIcon className='me-2' icon={faGoogle} /> {pathValidation?'Login':'Signup'} With Google</button>
+                <button onClick={() => signInWithFacebook()} className='w-100 my-2 btn btn-primary'><FontAwesomeIcon className='me-2' icon={faFacebook} /> {pathValidation?'Login':'Signup'} With Facebook</button>
+                <button onClick={() => signInWithgithub()} className='w-100 my-2 btn btn-success'><FontAwesomeIcon className='me-2' icon={faGithub} /> {pathValidation?'Login':'Signup'} With Github</button>
             </div>
 
         </div>

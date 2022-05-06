@@ -22,27 +22,28 @@ const MyItems = () => {
             <Container>
                 <h2 className='title mb-4'>My <span className='custom-title'>Items</span></h2>
 
-                <Table bordered hover>
-                    <thead className='table-dark'>
-                        <tr>
-                            <th>Id</th>
-                            <th>Thumbnail</th>
-                            <th>Car Model</th>
-                            <th>Price</th>
-                            <th>In Stock</th>
-                            <th>Brand</th>
-                            <th>Supplier</th>
-                            <th>Descirption</th>
-                            <th>Edit/Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            myDatas?.map(myData => <MyItemsData key={myData._id} myData={myData} ></MyItemsData>)
-                        }
-                    </tbody>
-                </Table>
-
+                <div className="product-table">
+                    <Table bordered hover>
+                        <thead className='table-dark'>
+                            <tr>
+                                <th>Id</th>
+                                <th>Thumbnail</th>
+                                <th>Car Model</th>
+                                <th>Price</th>
+                                <th>In Stock</th>
+                                <th>Brand</th>
+                                <th>Supplier</th>
+                                <th>Descirption</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                myDatas?.map(myData => <MyItemsData key={myData._id} myData={myData} ></MyItemsData>)
+                            }
+                        </tbody>
+                    </Table>
+                </div>
             </Container>
         </div>
     );

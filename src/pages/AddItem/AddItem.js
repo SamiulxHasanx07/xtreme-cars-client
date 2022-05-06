@@ -40,7 +40,7 @@ const AddItem = () => {
             <div className='py-5'>
                 <h2 className='title text-center mb-5'>Add <span className='custom-title'>Item</span></h2>
 
-                <div className="form-wrapper w-50 mx-auto">
+                <div className="form-wrapper mx-auto">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <label className='text-muted mb-2'>Car Name</label>
                         <input className='form-control mb-3' type="text" placeholder="Car Name" {...register("name", { required: 'Name Required' })} />
