@@ -135,8 +135,20 @@ font-family: 'Roboto', sans-serif; */
   justify-content: center;
 }
 
+/* info count  */
+.info-title{
+  font-size: 22px;
+}
+.info-num{
+  font-size: 45px;
+}
+
+
+
 @media (max-width: 576px) {
   footer .row .col-12 h3 {
     margin-top: 40px;
   }
 }
+
+

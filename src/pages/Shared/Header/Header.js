@@ -11,7 +11,6 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
     const [user] = useAuthState(auth);
     
-
     return (
         <>
             <Navbar bg="" variant="dark" className='py-3 black-bg' sticky="top">
@@ -31,11 +30,14 @@ const Header = () => {
                         }
 
                         {
-                            user ? <CustomLink to='/manageinventories'>Manage Inventories</CustomLink> :'' 
+                            user ? <CustomLink to='/manageinventories'>Manage Items</CustomLink> :'' 
+                        }
+                        {
+                            user ? <CustomLink to='/myitems'>My Items</CustomLink> :'' 
                         }
                         <CustomLink to='/blogs'>Blogs</CustomLink>
                         
-                        <p className='text-white m-0' title={user?user.displayName:''}>{user ? 'Hi, '+user?.displayName?.slice(0,3) : ''}..</p>
+                        <p className='text-white m-0' title={user?user.displayName:''}>{user ? 'Hi, '+user?.displayName : ''}</p>
                         {
                             user ? <button onClick={() => signOut(auth)} className='btn btn-link text-white text-decoration-none'>Logout <FontAwesomeIcon icon={faRightToBracket} /></button> : ''
                         }
