@@ -1,7 +1,6 @@
 import React from 'react';
 import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toast, ToastContainer } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const ManageInventoriesData = ({ car }) => {

@@ -9,9 +9,7 @@ const GetInTouch = () => {
     const onSubmit = (data, e) => {
         e.target.reset();
         toast.success('Thanks for Contact Us')
-        // console.log(data)
     };
-    console.log(errors);
     return (
         <div className='py-5'>
             <Container>

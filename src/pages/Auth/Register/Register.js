@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, FormText } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 import { faCircleExclamation, faCircleCheck, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -9,33 +9,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
-// redirect left
-
 const Register = () => {
     const [registerUser, setRegisterUser] = useState({ name: '', email: '', password: '', confirmPass: '' })
     const [formError, setFormError] = useState({ email: '', password: '', confirmPass: '' })
     const [disabled, setDisabled] = useState(false);
     const [showPass, setShowPass] = useState(false);
     const [outterError, setOutterError] = useState('')
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    if (error) {
-        setOutterError(error.code)
-    }
-
-    useEffect(() => {
-        switch (error?.code) {
-            case "auth/email-already-in-use":
-                toast.error('Email Already Used');
-                break;
-            default:
-
-        }
-    }, [error])
 
     const handleName = e => {
         setRegisterUser({ ...registerUser, name: e.target.value })
@@ -99,23 +85,38 @@ const Register = () => {
         setShowPass(!showPass)
     }
 
-    const location =  useLocation();
+
+    const location = useLocation();
     const navigate = useNavigate();
-    const from = location?.state?.from?.pathname || '/home'
-    const handleForm = async(e) => {
-        // console.log(registerUser);
+    const from = location?.state?.from?.pathname || '/user-welcome'
+
+    const handleForm = async (e) => {
         e.preventDefault();
         const { name, email, password, confirmPass } = registerUser;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (name.length >= 3 && emailRegex.test(email) && password === confirmPass && !error) {
+        if (name.length >= 3 && emailRegex.test(email) && password === confirmPass) {
             await createUserWithEmailAndPassword(email, password)
-            await toast.success('Thanks for register, Verification code sended');
+            await updateProfile({ displayName:name });
             await navigate(from, {replace:true});
-        } else {
-            outterError ? toast.error(outterError) : toast.error('Something Wrong Try Again')
-
         }
+
     }
+
+    useEffect(() => {
+        if (error) {
+            setOutterError(error?.code)
+        }
+    }, [error])
+
+    useEffect(() => {
+        switch (outterError) {
+            case "auth/email-already-in-use":
+                toast.error('Email Already Used');
+                setOutterError('')
+                break;
+            default:
+        }
+    }, [outterError])
     return (
         <div>
             <Container>
@@ -159,9 +160,9 @@ const Register = () => {
                         <p>Already have an account? <Link to='/login'>Login</Link></p>
                         <input type="submit" value="Create Account" className='btn btn-primary w-100 py-2' />
                         <div className='mt-4'>
-                        <SocialLogin></SocialLogin>
                         </div>
                     </Form>
+                    <SocialLogin></SocialLogin>
                 </div>
             </Container>
             <ToastContainer

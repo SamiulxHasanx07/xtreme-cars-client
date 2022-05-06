@@ -16,6 +16,7 @@ import EditCarInfo from './pages/Home/EditCarInfo/EditCarInfo';
 import AddItem from './pages/AddItem/AddItem';
 import Loading from './pages/Shared/Loading/Loading';
 import MyItems from './pages/MyItems/MyItems';
+import SignUpWelcome from './pages/SignUpWelcome/SignUpWelcome';
 
 function App() {
   return (
@@ -53,6 +54,11 @@ function App() {
             <EditCarInfo></EditCarInfo>
           </RequireAuth>
         }/>
+        <Route path='/user-welcome' element={
+          <RequireAuth>
+            <SignUpWelcome/>
+          </RequireAuth>
+        }></Route>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>

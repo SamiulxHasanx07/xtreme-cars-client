@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar,} from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -13,7 +13,7 @@ const Header = () => {
     const userName = user?.displayName;
     return (
         <>
-            <Navbar bg="" variant="dark" className='py-3 black-bg' expand="lg">
+            <Navbar bg="" variant="dark" className='py-3 black-bg' expand="lg" sticky='top'>
                 <Container>
                     <h3 className='header-logo'><Link to='/'>Xtreme Cars</Link></h3>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
