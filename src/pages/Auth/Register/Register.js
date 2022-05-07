@@ -8,6 +8,7 @@ import { faCircleExclamation, faCircleCheck, faEyeSlash } from '@fortawesome/fre
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useJWTAuthToken from '../../../hook/useJWTAuthToken';
 
 const Register = () => {
     const [registerUser, setRegisterUser] = useState({ name: '', email: '', password: '', confirmPass: '' })
@@ -38,7 +39,7 @@ const Register = () => {
             setFormError({ ...formError, email: false })
             setRegisterUser({ ...registerUser, email: e.target.value })
         }
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setFormError({ ...formError, email: '' })
             setRegisterUser({ ...registerUser, email: '' })
         }
@@ -57,7 +58,7 @@ const Register = () => {
             setDisabled(true)
             setRegisterUser({ ...registerUser, password: e.target.value })
         }
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setFormError({ ...formError, password: '' })
             setDisabled(false)
             setRegisterUser({ ...registerUser, password: '' })
@@ -66,7 +67,7 @@ const Register = () => {
 
     const handleConfirmPass = e => {
         const inpuPass = registerUser.password;
-        const validate = inpuPass == e.target.value;
+        const validate = inpuPass === e.target.value;
 
         if (validate) {
             setFormError({ ...formError, confirmPass: true })
@@ -75,7 +76,7 @@ const Register = () => {
             setFormError({ ...formError, confirmPass: false })
             setRegisterUser({ ...registerUser, confirmPass: '' })
         }
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setFormError({ ...formError, confirmPass: '' })
             setRegisterUser({ ...registerUser, confirmPass: '' })
         }
@@ -86,25 +87,10 @@ const Register = () => {
     }
 
 
-    const location = useLocation();
     const navigate = useNavigate();
-    const from = location?.state?.from?.pathname || '/user-welcome'
-
-    const handleForm = async (e) => {
-        e.preventDefault();
-        const { name, email, password, confirmPass } = registerUser;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (name.length >= 3 && emailRegex.test(email) && password === confirmPass) {
-            await createUserWithEmailAndPassword(email, password)
-            await updateProfile({ displayName:name });
-            await navigate(from, {replace:true});
-        }
-
-    }
-
     useEffect(() => {
         if (error) {
-            setOutterError(error?.code)
+            setOutterError(error.code)
         }
     }, [error])
 
@@ -117,6 +103,46 @@ const Register = () => {
             default:
         }
     }, [outterError])
+
+    const handleForm = async (e) => {
+        e.preventDefault();
+        const { name, email, password, confirmPass } = registerUser;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (name.length >= 3 && emailRegex.test(email) && password === confirmPass) {
+            await createUserWithEmailAndPassword(email, password)
+            await updateProfile({ displayName: name });
+            // await toast.success('Thanks for create account')
+            // await navigate(from, { replace: true });
+            // navigate('/user-welcome')
+
+
+        }
+
+    }
+
+    // custom accessToken hook
+    const accessToken = useJWTAuthToken();
+    if (user) {
+        const { email } = registerUser;
+
+        // custom accessToken hook
+        accessToken(email);
+        navigate('/user-welcome')
+
+        // fetch('http://localhost:5000/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({ email })
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         // console.log(data.accessToken)
+        //         localStorage.setItem('accessToken', data.accessToken)
+        //     })
+    }
     return (
         <div>
             <Container>

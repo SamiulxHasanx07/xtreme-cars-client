@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, FormText } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { faCircleExclamation, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useJWTAuthToken from '../../../hook/useJWTAuthToken';
 
 const Login = () => {
     const [
@@ -21,9 +22,9 @@ const Login = () => {
     // const [outterError, setOutterError] = useState({ error: '' })
 
 
-    if (error) {
-        console.log(error.code);
-    }
+    // if (error) {
+    //     console.log(error.code);
+    // }
 
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const Login = () => {
             setFormInfo({ ...formInfo, email: '' })
             setFormError({ ...formError, email: true })
         }
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setFormError({ ...formError, email: '' })
         }
     }
@@ -63,33 +64,44 @@ const Login = () => {
             setFormInfo({ ...formInfo, password: '' })
             setFormError({ ...formError, password: true })
         }
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setFormError({ ...formError, password: '' })
         }
     }
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/home";
 
+    const accessToken = useJWTAuthToken();
     const handleLoginForm = async (e) => {
         e.preventDefault();
         const { email, password } = formInfo;
         if (email.length > 1 && password.length > 1) {
             await signInWithEmailAndPassword(email, password)
-            await fetch('http://localhost:5000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email})
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data.accessToken)
-                    localStorage.setItem('accessToken', data.accessToken)
-                })
-            // console.log(user);
 
+            // custom accesstoken hook
+            accessToken(email)
+            // await fetch('http://localhost:5000/login', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({ email })
+            // })
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         // console.log(data.accessToken)
+            //         localStorage.setItem('accessToken', data.accessToken)
+            //     })
+            // console.log(user);
         }
     }
 
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true })
+        }
+    }, [user])
 
     const [showPass, setShowPass] = useState(false);
     const handleShow = () => {
@@ -104,7 +116,7 @@ const Login = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control required onChange={handleEmail} name='email' type="email" placeholder="Enter email" />
-                            <FormText className={formError?.email == '' ? 'd-none' : 'd-block'}>
+                            <FormText className={formError?.email === '' ? 'd-none' : 'd-block'}>
                                 {
                                     formError.email ? (<span className='text-danger mt-2'><FontAwesomeIcon icon={faCircleExclamation} /> Invalid Email</span>) : ''
                                 }
@@ -118,7 +130,7 @@ const Login = () => {
                                 <Form.Control onChange={handlePassword} name='password' type={showPass ? 'text' : 'password'} placeholder="Password" />
                                 <span onClick={handleShow} className='btn' style={{ position: 'absolute', top: '0', right: '0' }}><FontAwesomeIcon icon={faEyeSlash} /></span>
                             </div>
-                            <FormText className={formError?.password == '' ? 'd-none' : 'd-block'}>
+                            <FormText className={formError?.password === '' ? 'd-none' : 'd-block'}>
                                 {
                                     formError.password ? (<span className='text-danger mt-2'><FontAwesomeIcon icon={faCircleExclamation} /> Hints: Minimum six characters, one uppercase letter, one lowercase letter, one number and special character</span>) : ''
                                 }
