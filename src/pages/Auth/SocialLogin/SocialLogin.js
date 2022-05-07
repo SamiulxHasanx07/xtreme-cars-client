@@ -40,10 +40,12 @@ const SocialLogin = () => {
     // custom accessToken hook
     const accessToken = useJWTAuthToken();
     if (googleUser || facebookUser || githubUser) {
-        const email = googleUser?.user?.email;
+        const googleEmail = googleUser?.user?.email;
+        const facebookEmail = facebookUser?.user?.email;
+        const githubEmail = githubUser?.user?.email;
 
         // custom accessToken hook
-        accessToken(email)
+        accessToken(googleEmail || facebookEmail || githubEmail)
         navigate(from, { replace: true });
         // fetch('http://localhost:5000/login', {
         //     method: 'POST',
