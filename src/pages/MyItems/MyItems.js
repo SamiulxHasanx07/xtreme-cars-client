@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Spinner, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -15,7 +15,7 @@ const MyItems = () => {
     useEffect(() => {
 
 
-        // const url = `http://localhost:5000/myitems/${user?.email}`;
+        // const url = `https://xtreme-cars-2022.herokuapp.com/myitems/${user?.email}`;
         // try {
         //     fetch(url, {
         //         headers: {
@@ -42,7 +42,7 @@ const MyItems = () => {
 
         // }
 
-        const url = `http://localhost:5000/myitems/${user?.email}`;
+        const url = `https://xtreme-cars-2022.herokuapp.com/myitems/${user?.email}`;
         // try {
         //     fetch(url, {
         //         headers: {
@@ -66,11 +66,11 @@ const MyItems = () => {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res =>{
-                if(res.status === 401 || res.status === 403 ){
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
                     signOut(auth)
                     navigate('/login')
-                }else{
+                } else {
                     return res.json()
                 }
             })
@@ -103,7 +103,13 @@ const MyItems = () => {
                         </thead>
                         <tbody>
                             {
-                                myDatas?.map(myData => <MyItemsData key={myData._id} myData={myData} ></MyItemsData>)
+                                myDatas.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={9} className='text-center py-5'>
+                                            <Spinner variant='danger' animation="border" />
+                                        </td>
+                                    </tr>
+                                ) : myDatas?.map(myData => <MyItemsData key={myData._id} myData={myData} ></MyItemsData>)
                             }
                         </tbody>
                     </Table>

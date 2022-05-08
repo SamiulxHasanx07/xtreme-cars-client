@@ -26,7 +26,7 @@ const MyItemsData = ({ myData }) => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `http://localhost:5000/car?_id=${_id}`
+                const url = `https://xtreme-cars-2022.herokuapp.com/car?_id=${_id}`
                 fetch(url, {
                     method: 'DELETE'
                 })

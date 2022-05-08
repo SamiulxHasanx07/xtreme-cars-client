@@ -7,7 +7,7 @@ import ManageInventoriesData from './ManageInventoriesData/ManageInventoriesData
 const ManageInventories = () => {
     const [cars, setCars] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/cars')
+        fetch('https://xtreme-cars-2022.herokuapp.com/cars')
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -33,8 +33,15 @@ const ManageInventories = () => {
                             </tr>
                         </thead>
                         <tbody>
+
                             {
-                                cars.map(car => <ManageInventoriesData key={car._id} car={car}></ManageInventoriesData>)
+                                cars.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={9} className='text-center py-5'>
+                                            <Spinner variant='danger' animation="border" />
+                                        </td>
+                                    </tr>
+                                ) : cars.map(car => <ManageInventoriesData key={car._id} car={car}></ManageInventoriesData>)
                             }
                         </tbody>
                     </Table>

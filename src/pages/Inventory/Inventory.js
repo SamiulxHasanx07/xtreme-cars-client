@@ -10,7 +10,7 @@ const Inventory = () => {
     const { name, img, _id, price, qty, des, supplier, brand } = car;
 
     useEffect(() => {
-        const url = `http://localhost:5000/car/${carId}`
+        const url = `https://xtreme-cars-2022.herokuapp.com/car/${carId}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -28,7 +28,7 @@ const Inventory = () => {
         }
 
         if (inputQty > 0) {
-            const url = `http://localhost:5000/carqty/${_id}`;
+            const url = `https://xtreme-cars-2022.herokuapp.com/carqty/${_id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -53,7 +53,7 @@ const Inventory = () => {
             newQty: oldQty - 1
         }
         if (qty > 0) {
-            const url = `http://localhost:5000/carqty/${_id}`;
+            const url = `https://xtreme-cars-2022.herokuapp.com/carqty/${_id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

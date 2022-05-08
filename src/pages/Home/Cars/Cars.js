@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Spinner } from 'react-bootstrap';
-import Loading from '../../Shared/Loading/Loading';
 import Car from './Car/Car';
 
 const Cars = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/cars')
+        fetch('https://xtreme-cars-2022.herokuapp.com/cars')
             .then(res => res.json())
             .then(data => setCars(data.slice(0, 6)))
 

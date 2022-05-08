@@ -13,7 +13,7 @@ const AddItem = () => {
     const onSubmit = (data, e) => {
         console.log(errors);
 
-        fetch('http://localhost:5000/car', {
+        fetch('https://xtreme-cars-2022.herokuapp.com/car', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

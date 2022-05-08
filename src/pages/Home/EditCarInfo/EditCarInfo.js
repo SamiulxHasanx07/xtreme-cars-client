@@ -9,7 +9,7 @@ const EditCarInfo = () => {
     const { _id, name, img, price, qty, supplier, brand, des } = carInfo;
 
     useEffect(() => {
-        const url = `http://localhost:5000/car/${id}`;
+        const url = `https://xtreme-cars-2022.herokuapp.com/car/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -39,7 +39,7 @@ const EditCarInfo = () => {
             toast.error('Please Enter Valid Price & Quantity')
         } else {
 
-            const url = `http://localhost:5000/car/${id}`
+            const url = `https://xtreme-cars-2022.herokuapp.com/car/${id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {

@@ -49,7 +49,7 @@ const SocialLogin = () => {
         // custom accessToken hook
         accessToken(googleEmail || facebookEmail || githubEmail)
         navigate(from, { replace: true });
-        // fetch('http://localhost:5000/login', {
+        // fetch('https://xtreme-cars-2022.herokuapp.com/login', {
         //     method: 'POST',
         //     headers: {
         //         'Content-Type': 'application/json'

@@ -6,15 +6,17 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAK82AryDiB5dBtbXxwR-doxmehjJwtQ90",
-  authDomain: "xtreme-cars-2022.firebaseapp.com",
-  projectId: "xtreme-cars-2022",
-  storageBucket: "xtreme-cars-2022.appspot.com",
-  messagingSenderId: "578714307488",
-  appId: "1:578714307488:web:ef544f4087028dd0dc72c5"
+  apiKey: "AIzaSyBDxCEGIW1DMyn7pinIhlVuzSdV7MU3ZqY",
+  authDomain: "sam-professional-trainer.firebaseapp.com",
+  projectId: "sam-professional-trainer",
+  storageBucket: "sam-professional-trainer.appspot.com",
+  messagingSenderId: "945443781246",
+  appId: "1:945443781246:web:6ca27fc32fcb381e46b62f"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
+
+
 export default auth;

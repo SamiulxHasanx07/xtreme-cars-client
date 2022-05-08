@@ -1,7 +1,7 @@
 const useJWTAuthToken = () => {
 
     const accessToken = (email) => {
-        fetch('http://localhost:5000/login', {
+        fetch('https://xtreme-cars-2022.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
