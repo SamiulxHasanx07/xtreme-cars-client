@@ -7,13 +7,10 @@ import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const ResetPassword = () => {
-
     const [formEmail, setFormEmail] = useState('')
     const [formError, setFormError] = useState('')
-
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
     const [toastError, setToastError] = useState('')
-
     useEffect(() => {
         if (error) {
             setToastError(error.code);
@@ -22,7 +19,6 @@ const ResetPassword = () => {
             setToastError('');
         }
     }, [error])
-
 
     const handleResetForm = async (e) => {
         e.preventDefault();
@@ -34,7 +30,6 @@ const ResetPassword = () => {
             await toast.success('Password Reset Link Sended')
         }
     }
-
 
     const handleEmail = (e) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,25 +46,6 @@ const ResetPassword = () => {
             setFormError('')
         }
     }
-
-    // const handleResetForm = (e) => {
-    //     e.preventDefault();
-    //     if (toastError) {
-    //         toast.error(toastError);
-
-    //     } else {
-    //         if (formEmail.length > 1) {
-    //             sendPasswordResetEmail(formEmail)
-    //             toast.success('Password Reset Code Sended');
-
-    //             // if (error) {
-    //             //     toast.error(error.code);
-    //             // } else {
-    //             //     toast.success('Password Reset Code Sended');
-    //             // }
-    //         }
-    //     }
-    // }
     return (
         <div className='' style={{minHeight:'70vh'}}>
             <Container>

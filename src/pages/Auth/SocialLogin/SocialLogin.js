@@ -6,7 +6,6 @@ import { faGoogle, faFacebook, faGithub } from '@fortawesome/free-brands-svg-ico
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useJWTAuthToken from '../../../hook/useJWTAuthToken';
-import Loading from '../../Shared/Loading/Loading';
 import { Spinner } from 'react-bootstrap';
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -33,8 +32,6 @@ const SocialLogin = () => {
         }
     }, [googleError])
 
-
-
     const from = location.state?.from?.pathname || "/home";
     const path = location.pathname;
     const pathValidation = path === '/login';
@@ -45,23 +42,9 @@ const SocialLogin = () => {
         const googleEmail = googleUser?.user?.email;
         const facebookEmail = facebookUser?.user?.email;
         const githubEmail = githubUser?.user?.email;
-
         // custom accessToken hook
         accessToken(googleEmail || facebookEmail || githubEmail)
         navigate(from, { replace: true });
-        // fetch('https://xtreme-cars-2022.herokuapp.com/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ email })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         // console.log(data.accessToken)
-        //         localStorage.setItem('accessToken', data.accessToken)
-        //     })
-
     }
 
     const signInGoogle = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, FormText } from 'react-bootstrap';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
@@ -29,10 +29,8 @@ const Register = () => {
         setRegisterUser({ ...registerUser, name: e.target.value })
     }
     const handleEmail = e => {
-        // console.log(e.target.value);
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const validate = regex.test(e.target.value)
-        // console.log(validate);
         if (!validate) {
             setFormError({ ...formError, email: true })
             setRegisterUser({ ...registerUser, email: '' })
@@ -46,7 +44,6 @@ const Register = () => {
         }
     }
     const handlePass = e => {
-        // console.log(e.target.value);
         const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
         const validate = passRegex.test(e.target.value)
         // console.log(validate);
@@ -86,8 +83,6 @@ const Register = () => {
     const handleShow = () => {
         setShowPass(!showPass)
     }
-
-
     const navigate = useNavigate();
     useEffect(() => {
         if (error) {
@@ -113,11 +108,6 @@ const Register = () => {
         if (name.length >= 3 && emailRegex.test(email) && password === confirmPass) {
             await createUserWithEmailAndPassword(email, password)
             await updateProfile({ displayName: name });
-            // await toast.success('Thanks for create account')
-            // await navigate(from, { replace: true });
-            // navigate('/user-welcome')
-
-
         }
     setFormError({ email: '', password: '', confirmPass: '' })
     }
@@ -127,31 +117,13 @@ const Register = () => {
     const accessToken = useJWTAuthToken();
     if (user) {
         const { email } = registerUser;
-
-        // custom accessToken hook
         accessToken(email);
         navigate('/user-welcome')
-
-        // fetch('https://xtreme-cars-2022.herokuapp.com/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ email })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         // console.log(data.accessToken)
-        //         localStorage.setItem('accessToken', data.accessToken)
-        //     })
     }
-
 
     if (loading) {
         return <Loading />
-
     }
-
     return (
         <div>
             <Container>

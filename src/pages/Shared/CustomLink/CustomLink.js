@@ -7,7 +7,6 @@ const CustomLink = ({ children, to, ...props }) => {
     return (
         <>
             <Link
-                // style={{ color: match ? "#b91e1f" : "#fff" }}
                 className={match?'active':'menu-link'}
                 to={to}
                 {...props}

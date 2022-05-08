@@ -13,54 +13,7 @@ const MyItems = () => {
 
     const navigate = useNavigate();
     useEffect(() => {
-
-
-        // const url = `https://xtreme-cars-2022.herokuapp.com/myitems/${user?.email}`;
-        // try {
-        //     fetch(url, {
-        //         headers: {
-        //             authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        //         }
-        //     })
-        //         .then(res => res.json())
-        //         .then(data => {
-        //             try {
-
-        //                 setMyDatas(data)
-        //             }
-        //             catch (error) {
-        //                 console.log(error);
-        //             }
-        //             // console.log(data);
-
-        //         })
-        // }
-        // catch (error) {
-        //     console.log('test');
-
-        //     // console.log(error);
-
-        // }
-
         const url = `https://xtreme-cars-2022.herokuapp.com/myitems/${user?.email}`;
-        // try {
-        //     fetch(url, {
-        //         headers: {
-        //             authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        //         }
-        //     })
-        //         .then(res => res.json())
-        //         .then(data => {
-        //             // console.log(data.message);
-        //             // console.log(data);   
-        //             // setMyDatas(data)
-        //             // console.log(data);
-        //         })
-        // } catch (error) {
-        //     console.log('error');
-
-        // }
-
         fetch(url, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -78,7 +31,7 @@ const MyItems = () => {
                 setMyDatas(data)
             })
 
-    }, [])
+    }, [myDatas])
 
 
     return (
@@ -88,7 +41,7 @@ const MyItems = () => {
 
                 <div className="product-table">
                     <Table bordered hover responsive>
-                        <thead className='table-dark'>
+                        <thead className='text-white black-bg'>
                             <tr>
                                 <th>Id</th>
                                 <th>Thumbnail</th>

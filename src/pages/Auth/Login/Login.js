@@ -19,18 +19,10 @@ const Login = () => {
 
     const [formInfo, setFormInfo] = useState({ email: '', password: '' })
     const [formError, setFormError] = useState({ email: '', password: '' })
-    // const [outterError, setOutterError] = useState({ error: '' })
-
     const [showPass, setShowPass] = useState(false);
     const handleShow = () => {
         setShowPass(!showPass)
     }
-
-    // if (error) {
-    //     console.log(error.code);
-    // }
-
-
     useEffect(() => {
         switch (error?.code) {
             case "auth/user-not-found":
@@ -82,22 +74,7 @@ const Login = () => {
         const { email, password } = formInfo;
         if (email.length > 1 && password.length > 1) {
             await signInWithEmailAndPassword(email, password)
-
-            // custom accesstoken hook
             accessToken(email)
-            // await fetch('https://xtreme-cars-2022.herokuapp.com/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({ email })
-            // })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         // console.log(data.accessToken)
-            //         localStorage.setItem('accessToken', data.accessToken)
-            //     })
-            // console.log(user);
         }
     }
 

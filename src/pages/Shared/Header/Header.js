@@ -15,7 +15,6 @@ const Header = () => {
 
     const [scrollYPosition, setScrollYPosition] = useState(false)
     window.addEventListener('scroll', (event) => {
-        // console.log(window.pageYOffset);
         const position = window.pageYOffset;
         if (position > 180) {
             setScrollYPosition(true)

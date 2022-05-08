@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import { toast, ToastContainer } from 'react-toastify';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Swal from 'sweetalert2';
@@ -23,23 +22,18 @@ const AddItem = () => {
             .then(res => res.json())
             .then(data => {
                 e.target.reset();
-                // toast.success('New Car Added Successfully!!')
                 Swal.fire({
                     icon: 'success',
                     title: 'Successfully Added New Car!!',
                     confirmButtonColor: '#198754',
                 })
             })
-
     };
 
-
-    // console.log(errors);
     return (
         <Container>
             <div className='py-5'>
                 <h2 className='title text-center mb-5'>Add <span className='custom-title'>Item</span></h2>
-
                 <div className="form-wrapper mx-auto">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <label className='text-muted mb-2'>Car Name</label>
@@ -64,11 +58,10 @@ const AddItem = () => {
                         <label className='text-muted mb-2'>Car Description</label>
                         <textarea className='form-control mb-3' placeholder='Add Car Description' {...register("des", { required: "Please Enter Product Description" })} />
                         <ErrorMessage className='text-danger m-0 mb-3' errors={errors} name="des" as="p" />
-                        <input className='btn custom-btn w-100' type="submit" />
+                        <input className='btn custom-btn w-100' type="submit" value='Add Car'/>
                     </form>
                 </div>
             </div>
-            <ToastContainer />
         </Container>
 
 

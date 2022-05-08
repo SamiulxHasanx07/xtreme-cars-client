@@ -19,7 +19,7 @@ const ManageInventories = () => {
                 <h2 className='title mb-4'>All <span className='custom-title'>Car Details</span></h2>
                 <div className="product-table">
                     <Table bordered hover responsive>
-                        <thead className='table-dark'>
+                        <thead className='text-white black-bg'>
                             <tr>
                                 <th>Id</th>
                                 <th>Thumbnail</th>

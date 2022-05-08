@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 const EditCarInfo = () => {
     const { id } = useParams();
     const [carInfo, setCarInfo] = useState([]);
-    const { _id, name, img, price, qty, supplier, brand, des } = carInfo;
+    const { name, img, price, qty, supplier, brand, des } = carInfo;
 
     useEffect(() => {
         const url = `https://xtreme-cars-2022.herokuapp.com/car/${id}`;
@@ -17,7 +17,6 @@ const EditCarInfo = () => {
                 setCarInfo(data)
             })
     }, [])
-
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +31,6 @@ const EditCarInfo = () => {
         const data = {
             name: updateName, img: updateImg, price: updatePrice, qty: updateQty, supplier: updateSupplier, brand: updateBrand, des: updateDes
         }
-        // console.log(data);
 
         if (updateQty < 1 || updatePrice < 1) {
 
@@ -51,7 +49,6 @@ const EditCarInfo = () => {
                 .then(data => {
                     toast.success('Info Updated!!')
                 })
-
         }
     }
     return (
