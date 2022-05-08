@@ -3,6 +3,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Container, Spinner, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import MyItemsData from './MyItemsData/MyItemsData';
@@ -66,6 +67,9 @@ const MyItems = () => {
                             }
                         </tbody>
                     </Table>
+                </div>
+                <div className='text-center py-5'>
+                    <Link to='/additem' className='btn btn-success'>Add New Item</Link>
                 </div>
             </Container>
         </div>
