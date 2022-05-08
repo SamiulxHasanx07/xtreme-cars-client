@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Spinner, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import ManageInventoriesData from './ManageInventoriesData/ManageInventoriesData';
@@ -18,7 +18,7 @@ const ManageInventories = () => {
             <Container>
                 <h2 className='title mb-4'>All <span className='custom-title'>Car Details</span></h2>
                 <div className="product-table">
-                    <Table bordered hover>
+                    <Table bordered hover responsive>
                         <thead className='table-dark'>
                             <tr>
                                 <th>Id</th>

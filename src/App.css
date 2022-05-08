@@ -36,9 +36,10 @@ font-family: 'Roboto', sans-serif; */
   background-color: var(--primary-color) !important;
 }
 
+.title{
+}
 .title:hover .custom-title::before {
   width: 100%;
-  transition: .5s all ease;
 }
 
 .custom-title {
@@ -46,6 +47,7 @@ font-family: 'Roboto', sans-serif; */
 }
 
 .custom-title::before {
+  transition: .5s all ease;
   content: '';
   border-bottom: 3px solid #b91e1f;
   width: 50%;
@@ -90,6 +92,14 @@ font-family: 'Roboto', sans-serif; */
   color: var(--white-color);
 }
 
+.header-photo{
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+/* form style  */
 .form-container {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -192,11 +202,6 @@ font-family: 'Roboto', sans-serif; */
     width: 80%;
   }
 
-
-  /* product table */
-  .product-table {
-    overflow-x: auto;
-  }
 }
 
 

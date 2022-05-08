@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useJWTAuthToken from '../../../hook/useJWTAuthToken';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
     const [registerUser, setRegisterUser] = useState({ name: '', email: '', password: '', confirmPass: '' })
@@ -118,8 +119,9 @@ const Register = () => {
 
 
         }
-
+    setFormError({ email: '', password: '', confirmPass: '' })
     }
+
 
     // custom accessToken hook
     const accessToken = useJWTAuthToken();
@@ -143,6 +145,13 @@ const Register = () => {
         //         localStorage.setItem('accessToken', data.accessToken)
         //     })
     }
+
+
+    if (loading) {
+        return <Loading />
+
+    }
+
     return (
         <div>
             <Container>
@@ -184,7 +193,7 @@ const Register = () => {
                             </FormText>
                         </Form.Group>
                         <p>Already have an account? <Link to='/login'>Login</Link></p>
-                        <input type="submit" value="Create Account" className='btn btn-primary w-100 py-2' />
+                        <input type="submit" value="Create Account" className='btn custom-btn w-100 py-2' />
                         <div className='mt-4'>
                         </div>
                     </Form>

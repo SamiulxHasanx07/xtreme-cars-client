@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast, ToastContainer } from 'react-toastify';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useJWTAuthToken from '../../../hook/useJWTAuthToken';
-
+import Loading from '../../Shared/Loading/Loading';
 const Login = () => {
     const [
         signInWithEmailAndPassword,
@@ -21,6 +21,10 @@ const Login = () => {
     const [formError, setFormError] = useState({ email: '', password: '' })
     // const [outterError, setOutterError] = useState({ error: '' })
 
+    const [showPass, setShowPass] = useState(false);
+    const handleShow = () => {
+        setShowPass(!showPass)
+    }
 
     // if (error) {
     //     console.log(error.code);
@@ -103,9 +107,8 @@ const Login = () => {
         }
     }, [user])
 
-    const [showPass, setShowPass] = useState(false);
-    const handleShow = () => {
-        setShowPass(!showPass)
+    if (loading) {
+        return <Loading></Loading>
     }
     return (
         <div className=''>
@@ -138,7 +141,7 @@ const Login = () => {
                         </Form.Group>
                         <p>Dont Have account? <Link to='/register'>Register</Link></p>
                         <p>Forgot Password? <Link to='/resetpass'>Reset</Link></p>
-                        <input type="submit" value="Login" className='btn btn-primary w-100 py-2' />
+                        <input type="submit" value="Login" className='btn custom-btn w-100 py-2' />
                     </Form>
                     <SocialLogin></SocialLogin>
                 </div>

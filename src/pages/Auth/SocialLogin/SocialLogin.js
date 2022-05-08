@@ -6,6 +6,8 @@ import { faGoogle, faFacebook, faGithub } from '@fortawesome/free-brands-svg-ico
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useJWTAuthToken from '../../../hook/useJWTAuthToken';
+import Loading from '../../Shared/Loading/Loading';
+import { Spinner } from 'react-bootstrap';
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
@@ -64,6 +66,14 @@ const SocialLogin = () => {
 
     const signInGoogle = () => {
         signInWithGoogle()
+    }
+    if (googleLoading || facebookLoading || githubLoading) {
+
+        return (
+            <div className='d-flex align-items-center justify-content-center mt-5'>
+                <Spinner variant='danger' animation="border" />
+            </div>
+        )
     }
     return (
         <div>

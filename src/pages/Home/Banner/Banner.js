@@ -11,7 +11,7 @@ const Banner = () => {
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h2>Upcoming BMW Stock 2022</h2>
+                <h2>Upcoming BMW x5 Stock 2022</h2>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>

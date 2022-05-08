@@ -87,7 +87,7 @@ const MyItems = () => {
                 <h2 className='title mb-4'>My <span className='custom-title'>Items</span></h2>
 
                 <div className="product-table">
-                    <Table bordered hover>
+                    <Table bordered hover responsive>
                         <thead className='table-dark'>
                             <tr>
                                 <th>Id</th>

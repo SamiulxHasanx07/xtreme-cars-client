@@ -1,6 +1,6 @@
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Form, FormText } from 'react-bootstrap';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { toast, ToastContainer } from 'react-toastify';
@@ -12,6 +12,30 @@ const ResetPassword = () => {
     const [formError, setFormError] = useState('')
 
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
+    const [toastError, setToastError] = useState('')
+
+    useEffect(() => {
+        if (error) {
+            setToastError(error.code);
+
+        } else {
+            setToastError('');
+        }
+    }, [error])
+
+
+    const handleResetForm = async (e) => {
+        e.preventDefault();
+        await sendPasswordResetEmail(formEmail)
+        if (toastError.length > 0) {
+            await toast.error(toastError)
+            await setToastError('');
+        } else {
+            await toast.success('Password Reset Link Sended')
+        }
+    }
+
+
     const handleEmail = (e) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const validate = regex.test(e.target.value)
@@ -23,27 +47,33 @@ const ResetPassword = () => {
             setFormEmail('')
             setFormError(true)
         }
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setFormError('')
         }
     }
 
-    const handleResetForm = (e) => {
-        e.preventDefault();
-        if (formEmail.length > 1) {
-            sendPasswordResetEmail(formEmail)
+    // const handleResetForm = (e) => {
+    //     e.preventDefault();
+    //     if (toastError) {
+    //         toast.error(toastError);
 
-            if (error) {
-                toast.error(error.code);
-            } else{
-                toast.success('Password Reset Code Sended');
-            }
-        }
-    }
+    //     } else {
+    //         if (formEmail.length > 1) {
+    //             sendPasswordResetEmail(formEmail)
+    //             toast.success('Password Reset Code Sended');
+
+    //             // if (error) {
+    //             //     toast.error(error.code);
+    //             // } else {
+    //             //     toast.success('Password Reset Code Sended');
+    //             // }
+    //         }
+    //     }
+    // }
     return (
-        <div className=''>
+        <div className='' style={{minHeight:'70vh'}}>
             <Container>
-                <div className='form-container my-5 w-50 mx-auto px-4 py-5'>
+                <div className='form-container my-5 mx-auto px-4 py-5'>
                     <h2 className='text-center'>Reset Password</h2>
                     <Form onSubmit={handleResetForm}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">

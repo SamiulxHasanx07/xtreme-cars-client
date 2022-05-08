@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Nav, Navbar,} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Nav, Navbar, } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -11,9 +11,21 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
     const [user] = useAuthState(auth);
     const userName = user?.displayName;
+    
+
+    const [scrollYPosition, setScrollYPosition] = useState(false)
+    window.addEventListener('scroll', (event) => {
+        // console.log(window.pageYOffset);
+        const position = window.pageYOffset;
+        if (position > 180) {
+            setScrollYPosition(true)
+        } else {
+            setScrollYPosition(false)
+        }
+    })
     return (
         <>
-            <Navbar bg="" variant="dark" className='py-3 black-bg' expand="lg" sticky='top'>
+            <Navbar bg="" variant='dark' className={`black-bg ${scrollYPosition?"py-4":'py-3'}`} expand="lg" sticky='top'>
                 <Container>
                     <h3 className='header-logo'><Link to='/'>Xtreme Cars</Link></h3>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -38,6 +50,9 @@ const Header = () => {
                                 user ? '' : <CustomLink to='/register'>Register</CustomLink>
                             }
                             <p className='text-white m-0'>{userName ? 'Hi, ' + userName : ''}</p>
+                            {
+                                user?.photoURL?<div className='header-photo'><img className='img-fluid' src={user?.photoURL} alt="" /></div>:''
+                            }
                             {
                                 user ? <button onClick={() => signOut(auth)} className='btn btn-link text-white text-decoration-none'>Logout <FontAwesomeIcon icon={faRightToBracket} /></button> : ''
                             }
